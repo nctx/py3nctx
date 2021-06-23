@@ -12,7 +12,7 @@ namespace nctx{
 
   // DocString: kl_divergence
   /**
-   * @brief Obtain Kullback Leibler Divergence
+   * @brief Obtain Kullback Leibler Divergence.
    * 
    * A straightforward implementation of KL Divergence. Note that both lists must be probability distributions, i.e. they sum to one. This is not checked internally and will result in obscure results if not taken care of.
    * 
@@ -35,7 +35,7 @@ namespace nctx{
   
   // DocString: js_divergence
   /**
-   * @brief Obtain Jenson Shannon Divergence
+   * @brief Obtain Jenson Shannon Divergence.
    * 
    * A straightforward implementation of JS Divergence. Note that both lists must be probability distributions, i.e. they sum to one. This is not checked internally and will result in obscure results if not taken care of.
    * 
@@ -64,7 +64,7 @@ namespace nctx{
   
   // DocString: eucl_distance
   /**
-   * @brief Obtain Euclidean Distance
+   * @brief Obtain Euclidean Distance.
    * 
    * A straightforward implementation of Euclidean Distance.
    * 
@@ -85,7 +85,7 @@ namespace nctx{
   
   // DocString: cosine_sim
   /**
-   * @brief Obtain Cosine Similarity
+   * @brief Obtain Cosine Similarity.
    * 
    * A straightforward implementation of Cosine Similarity.
    * 
@@ -104,7 +104,7 @@ namespace nctx{
   
   // DocString: angular_distance
   /**
-   * @brief Obtain Angular Distance
+   * @brief Obtain Angular Distance.
    * 
    * A straightforward implementation of Angular Distance.
    * 

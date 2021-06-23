@@ -97,24 +97,26 @@ namespace nctx{ namespace python{
         using value_type = typename boost::mpl::at_c<property_map_element_types, t>::type;
         using cont = std::vector<value_type>;
         
-        std::string doc = std::string("This PropertyMap serves as a container of a typed list. It is not meant to be instatiated from Python.");
+        std::string doc = std::string("This serves as a container of a typed list to pass lists of ");
+          if (typeid(value_type) == typeid(int)){
+            doc += std::string("int");
+          }else if (typeid(value_type) == typeid(size_t)){
+            doc += std::string("unsigned long - numbers > 0 -");
+          }else if (typeid(value_type) == typeid(double_t)){
+            doc += std::string("float");
+          }else if (typeid(value_type) == typeid(std::string)){
+            doc += std::string("str");
+          }
+        doc += std::string(" to Python. It is not meant to be instatiated from Python.\nIf necessary, this container can be converted to a Python list or a numpy array easily.\n\nExample:\n    >>> context_v0 = context_map[0]\n    >>> print(type(context_v0).__name__)\n    VecDouble\n    >>> context_v0 = list(context_v0)\n    >>> print(type(context_v0).__name__)\n    list\n    >>> import numpy as np\n    >>> context_v0 = np.asarray(context_v0)\n    >>> print(type(context_v0).__name__)\nndarray");
         
         // register underlying type
         if (typeid(value_type) == typeid(std::string)){
-          //~ doc += std::string(" In this case, the underlying type is a string.");
           py::class_< cont, 
                     std::shared_ptr< cont >, 
                     boost::noncopyable> (s.c_str(), doc.c_str(), py::no_init)
             .def(py::vector_indexing_suite< cont >())
             .def("clear", &cont::clear,  "Empty the property map");
         }else{
-          //~ if (typeid(value_type) == typeid(int)){
-            //~ doc += std::string(" In this case, the underlying type is an integer.");
-          //~ }else if (typeid(value_type) == typeid(size_t)){
-            //~ doc += std::string(" In this case, the underlying type is an unsigned long, i.e. a number > 0.");
-          //~ }else if (typeid(value_type) == typeid(double_t)){
-            //~ doc += std::string(" In this case, the underlying type is a floating point number (double).");
-          //~ }
           py::class_< cont > (s.c_str(), doc.c_str(), py::no_init)
             .def(py::vector_indexing_suite< cont >())
             .def("clear", &cont::clear, "Empty the property map")

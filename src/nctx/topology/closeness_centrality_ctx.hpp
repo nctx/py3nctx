@@ -50,7 +50,7 @@ namespace nctx {
   
   // DocString: closenness_ctx
 /**
- * @brief Closeness centrality with dynamic contextual constraints
+ * @brief Closeness centrality with dynamic contextual constraints.
  * 
  * Using this function allows obtaining closeness centrality under dynamic contextual constraints. Enforcement of constraints is the task of the given user-defined function.
  * 

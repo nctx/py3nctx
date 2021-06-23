@@ -1,7 +1,7 @@
 nctx - Networks in ConTeXt
 ==========================
 
-The package `nctx` provides functionality to analyze attributed networks. Unique feature of this package is the ability to enforce contextual constraints via user-defined functions during shortest path discovery and centrality calculation.
+The package `nctx` provides functionality to analyze attributed networks. Unique feature of this package is the ability to enforce contextual constraints via user-defined functions during shortest path discovery and centrality calculation. More info and full documentation can be found [here](https://nctx.mircoschoenfeld.de/python3/)
 
 Basic Example
 =============
@@ -121,5 +121,29 @@ It results in the following betweenness values for the vertices:
 ```python3
 >>> list(betw_ctx)
 [0.0, 0.0, 2.4583333333333335, 2.125, 0.9166666666666665, 0.0, 0.0, 0.0, 0.5, 0.5833333333333333]
+```
+
+More examples can be found in the documentation of the functions - see [https://nctx.mircoschoenfeld.de/python3/](https://nctx.mircoschoenfeld.de/python3/)
+
+Citation
+========
+
+If you use the `nctx` package, please cite [the corresponding tech report](https://epub.uni-bayreuth.de/5677/):
+
+```
+Mirco Schoenfeld. nctx - Networks in ConTeXt. University of Bayreuth, 2021.
+```
+
+```
+@techreport{2021-schoenfeld-nctx,
+           month = {June},
+     institution = {University of Bayreuth},
+         address = {Bayreuth, Germany},
+          author = {Mirco Schoenfeld},
+           title = {nctx - Networks in ConTeXt},
+            year = {2021},
+        keywords = {network analysis, attributed networks, context-awareness, library, python, R, C++},
+             url = {https://epub.uni-bayreuth.de/5677/}
+}
 ```
 

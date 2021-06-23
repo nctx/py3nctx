@@ -15,7 +15,7 @@ namespace nctx { namespace python {
     using G = GraphContainer<directed>;
     
     std::string directed_word = directed ? std::string("directed") : std::string("undirected");
-    std::string directed_article = directed ? std::string("a") : std::string("an");
+    std::string directed_article = directed ? std::string("a ") : std::string("an ");
     std::string graph_doc = std::string("This class represents ") + directed_article + directed_word + std::string(" graph.\n\nExample:\n    >>> import nctx.") + directed_word + std::string(" as nctx\n    >>> graph = nctx.Graph()");
     
     std::string get_children_doc = std::string("Iterate over the children of a given vertex u.") + 

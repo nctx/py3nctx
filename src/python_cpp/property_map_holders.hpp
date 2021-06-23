@@ -1,7 +1,6 @@
 #ifndef _NCTX_PY_PMHLDR_
 #define _NCTX_PY_PMHLDR_
 
-
 namespace nctx { namespace python{
   
   template <typename T, bool directed>
@@ -15,7 +14,7 @@ namespace nctx { namespace python{
       typedef typename PropertyMap::key_type key_type;
       
     public:
-      PropertyMapHolder(GraphContainer<directed> gc, const std::string& _name) : name(_name){
+      PropertyMapHolder(GraphContainer<directed>& gc, const std::string& _name) : name(_name){
         pmap = b::make_vector_property_map<T>(gc.make_index_map());
       };
         
@@ -53,12 +52,12 @@ namespace nctx { namespace python{
       using key_type = typename PropertyMapHolder<T,directed>::PropertyMap::key_type;
     
     public:
-      PropertyMapValueHolder(GraphContainer<directed> gc, const std::string& _name) : PropertyMapHolder<T,directed>(gc,_name)
+      PropertyMapValueHolder(GraphContainer<directed>& gc, const std::string& _name) : PropertyMapHolder<T,directed>(gc,_name)
       {
         for (key_type i=0; i<gc.num_vertices(); i++)
           this->pmap[i] = T();
       };
-      PropertyMapValueHolder(GraphContainer<directed> gc, const std::string& _name, T init_val) : PropertyMapHolder<T,directed>(gc,_name)
+      PropertyMapValueHolder(GraphContainer<directed>& gc, const std::string& _name, T init_val) : PropertyMapHolder<T,directed>(gc,_name)
       {
         for (key_type i=0; i<gc.num_vertices(); i++)
           this->pmap[i] = init_val;
@@ -98,12 +97,12 @@ namespace nctx { namespace python{
       using key_type = typename PropertyMapHolder<std::vector<T>,directed>::PropertyMap::key_type;
     
     public:
-      PropertyMapVectorHolder(GraphContainer<directed> gc, const std::string& name) : PropertyMapHolder<std::vector<T>,directed>(gc,name)
+      PropertyMapVectorHolder(GraphContainer<directed>& gc, const std::string& name) : PropertyMapHolder<std::vector<T>,directed>(gc,name)
       {
         for (key_type i=0; i<gc.num_vertices(); i++)
           (this->pmap[i]);
       };
-      PropertyMapVectorHolder(GraphContainer<directed> gc, const std::string& name, T init_val, size_t init_size) : PropertyMapHolder<std::vector<T>,directed>(gc,name)
+      PropertyMapVectorHolder(GraphContainer<directed>& gc, const std::string& name, T init_val, size_t init_size) : PropertyMapHolder<std::vector<T>,directed>(gc,name)
       {
         for (key_type i=0; i<gc.num_vertices(); i++)
           (this->pmap[i]).resize(init_size, init_val);

@@ -109,6 +109,7 @@ class TestCases(unittest.TestCase):
       context_map.set_elem(v, random.uniform(0.0, 1.0))
     
   def test_pmap_container(self):
+    import numpy as np
     from nctx import core
     import nctx.directed as nctx
     g = nctx.Graph()
@@ -127,6 +128,12 @@ class TestCases(unittest.TestCase):
     self.assertEqual(complex_map.get_elem(0,2), 8.0)
     # ~ complex_map.set_list(0,  [1.0,2.0,3.0,"4.0",5.0])
     
+    
+    np_arr = np.array([np.array(xi) for xi in complex_map])
+    print(np_arr)
+    
+    np_arr = np.array(list(name_map))
+    print(np_arr)
     
     
   def test_io_directed(self):

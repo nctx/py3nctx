@@ -25,7 +25,7 @@ namespace nctx { namespace python {
         using value_type = typename boost::mpl::at_c<property_map_element_types, t>::type;
         using PMapCont = PropertyMapVectorHolder<value_type, directed>;
         
-        std::string doc = s + std::string(" serves as a container of lists, i.e. it is a list of lists. The nested lists all contain values of a single data type as this is a link to the C++ code base (and C++ is a strongly typed language). This PropertyMap behaves like a python list returning lists as items when iterating over it.\n\nThe allowed data type can be recognized from the class name of the PropertyMap.");
+        std::string doc = s + std::string(" serves as a container of lists, i.e. it is a list of lists of");
         
         std::string e_type = std::string("int");
         std::string ex_set_list = std::string("");
@@ -36,17 +36,17 @@ namespace nctx { namespace python {
         std::string hint_set_list = std::string("Please see :py:func:`PropertyMapVecDouble.set_list <nctx.directed.PropertyMapVecDouble.set_list>` for an example of type conversion.");
         std::string hint_set_elem = std::string("Please see :py:func:`PropertyMapVecDouble.set_elem <nctx.directed.PropertyMapVecDouble.set_elem>` for an example of type conversion.");
         if (typeid(value_type) == typeid(int)){
-          doc += std::string(" In this case, the underlying type is an integer.");
+          doc += std::string(" int.");
           ex_set_item = std::string("Example:\n    >>> my_map[2] = [1,2,3,4,5]\n    >>> my_map[2][0] = 42");
           ex_contains = std::string("Example:\n    >>> [1,2,3] in my_map\n    False");
           ex_init = std::string("\n    >>> my_map = ") + s + std::string("(g, 'context1', 0, 10)");
         }else if (typeid(value_type) == typeid(size_t)){
-          doc += std::string(" In this case, the underlying type is an unsigned long, i.e. a number > 0.");
+          doc += std::string(" unsigned long - numbers > 0.");
           ex_set_item = std::string("Example:\n    >>> my_map[2] = [1,2,3,4,5]\n    >>> my_map[2][0] = 42");
           ex_contains = std::string("Example:\n    >>> [1,2,3] in my_map\n    False");
           ex_init = std::string("\n    >>> my_map = ") + s + std::string("(g, 'context1', 0, 10)");
         }else if (typeid(value_type) == typeid(double_t)){
-          doc += std::string(" In this case, the underlying type is a floating point number (double).");
+          doc += std::string(" float.");
           ex_set_item = std::string("Example:\n    >>> my_map[2] = [.1,.2,.3,.4,.5]\n    >>> my_map[2][0] = 42.0");
           ex_contains = std::string("Example:\n    >>> [.1,.2,.3] in my_map\n    False");
           ex_init = std::string("\n    >>> my_map = ") + s + std::string("(g, 'context1', 0.0, 10)");
@@ -56,14 +56,13 @@ namespace nctx { namespace python {
           hint_set_list = std::string("");
           hint_set_elem = std::string("");
         }else if (typeid(value_type) == typeid(std::string)){
-          doc += std::string(" In this case, the underlying type is a string.");
+          doc += std::string(" str.");
           ex_set_item = std::string("Example:\n    >>> my_map[2] = ['1','2','3','4','5']\n    >>> my_map[2][0] = '42'");
           ex_contains = std::string("Example:\n    >>> ['1','2','3'] in my_map\n    False");
           ex_init = std::string("\n    >>> my_map = ") + s + std::string("(g, 'context1', '', 10)");
           e_type = std::string("str");
         }
-        doc += std::string("\n\nArgs:\n    g (Graph): The Graph object\n    name (str): Name of the PropertyMap\n    init_val (")+e_type+std::string("): initial value for each inner list\n    init_size (int): size of each inner list.\n\nExample:\n    >>> my_map = ") +
-               s + std::string("(g, 'context1')") + ex_init;
+        doc += std::string("\nThe nested lists all contain values of a single data type as this is a link to the C++ code base (and C++ is a strongly typed language). This PropertyMap behaves like a python list returning lists as items when iterating over it.\n\nThe allowed data type can be recognized from the class name of the PropertyMap.\n\nThe PropertyMap can be converted to a Python list or a numpy array easily.\n\nArgs:\n    g (Graph): The Graph object\n    name (str): Name of the PropertyMap\n    init_val (")+e_type+std::string("): initial value for each inner list\n    init_size (int): size of each inner list.\n\nExample:\n    >>> my_map = ") + s + std::string("(g, 'context1')") + ex_init + std::string("\n\nExample:\n    >>> import numpy as np\n    >>> np_arr = np.array([np.array(xi) for xi in my_map])");
                
         std::string doc_get_elem = std::string("Retrieve the jth element of ith list.\n\nArgs:\n    i (int): Index of List\n    j (int): Index of element.\n\nReturns:\n    ") + e_type + std::string(": jth element in ith list.");
         std::string doc_get_list = std::string("Retrieve the ith list.\n\nArgs:\n    i (int): Index of List\n    j (int): Index of element.\n\nReturns:\n    ") + s + std::string(": The list saved at position i.");
@@ -93,7 +92,7 @@ namespace nctx { namespace python {
           .def("__len__",  &PMapCont::get_size, "Allows to retrieve the length of the PropertyMap.\n\nExample:\n    >>> len(my_map)\n    10");
           
       }else{
-        std::string doc = s + std::string(" serves as a list of atom items. The list contains values of a single data type only as this is a link to the C++ code base (and C++ is a strongly typed language). This PropertyMap behaves like a python list, i.e. it allows iteration and supports built-in functions append and extend.\n\nThe contained data type can be recognized from the class name of the PropertyMap.");
+        std::string doc = s + std::string(" serves as a list of atom items of type");
         
         std::string e_type = std::string("int");
         std::string ex_set_elem = std::string("");
@@ -102,30 +101,32 @@ namespace nctx { namespace python {
         std::string ex_contains = std::string("");
         std::string ex_init = std::string("");
         if (typeid(elem_type) == typeid(int)){
-          doc += std::string(" In this case, the underlying type is an integer.");
+          doc += std::string(" int.");
           ex_set_item = std::string("Example:\n    >>> my_map[2] = 1");
-          ex_contains = std::string("Example:\n    >>> 1 in my_map\n    False");
+          ex_contains = std::string("Example:\n    >>> 0 in my_map\n    True\n    >>> 1 in my_map\n    False");
           ex_init = std::string("\n    >>> my_map = ") + s + std::string("(g, 'context1', 0)");
         }else if (typeid(elem_type) == typeid(size_t)){
-          doc += std::string(" In this case, the underlying type is an unsigned long, i.e. a number > 0.");
+          doc += std::string(" unsigned long - a number > 0.");
           ex_set_item = std::string("Example:\n    >>> my_map[2] = 1");
-          ex_contains = std::string("Example:\n    >>> 1 in my_map\n    False");
+          ex_contains = std::string("Example:\n    >>> 0 in my_map\n    True\n    >>> 1 in my_map\n    False");
           ex_init = std::string("\n    >>> my_map = ") + s + std::string("(g, 'context1', 0)");
         }else if (typeid(elem_type) == typeid(double_t)){
-          doc += std::string(" In this case, the underlying type is a floating point number (double).");
+          doc += std::string(" float.");
           ex_set_item = std::string("Example:\n    >>> my_map[2] = .1");
-          ex_contains = std::string("Example:\n    >>> .1 in my_map\n    False");
+          ex_contains = std::string("Example:\n    >>> .0 in my_map\n    True\n    >>> .1 in my_map\n    False");
           e_type = std::string("float");
           ex_set_elem = std::string("Example:\n    Note the type conversion (float to int) from the input list to the output of :py:func:`get_elem <nctx.directed.PropertyMapDouble.get_elem>`.\n\n    >>> complex_map = ") + s + std::string("(g, 'context')\n    >>> complex_map.set_elem(0, 3)\n    >>> complex_map.get_elem(0)\n    3.0");
           hint_set_elem = std::string("");
           ex_init = std::string("\n    >>> my_map = ") + s + std::string("(g, 'context1', .0)");
         }else if (typeid(elem_type) == typeid(std::string)){
+          doc += std::string(" str.");
+          e_type = std::string("str");
           ex_set_item = std::string("Example:\n    >>> my_map[2] = '1'");
-          ex_contains = std::string("Example:\n    >>> '1' in my_map\n    False");
+          ex_contains = std::string("Example:\n    >>> '' in my_map\n    True\n    >>> '1' in my_map\n    False");
           ex_init = std::string("\n    >>> my_map = ") + s + std::string("(g, 'context1', '')");
         }
-        doc += std::string("\n\nArgs:\n    g (Graph): The Graph object\n    name (str): Name of the PropertyMap\n    init_val (")+e_type+std::string("): initial value\n\nExample:\n    >>> my_map = ") +
-               s + std::string("(g, 'context1')")+ex_init;
+        doc += std::string("\nThe list contains values of a single data type only as this is a link to the C++ code base (and C++ is a strongly typed language). This PropertyMap behaves like a python list, i.e. it allows iteration and supports built-in functions append and extend.\n\nThe contained data type can be recognized from the class name of the PropertyMap.\n\nThe PropertyMap can be converted to a Python list or a numpy array easily.\n\nArgs:\n    g (Graph): The Graph object\n    name (str): Name of the PropertyMap\n    init_val (")+e_type+std::string("): initial value\n\nExample:\n    >>> my_map = ") +
+               s + std::string("(g, 'context1')")+ex_init + std::string("\n\nExample:\n    >>> import numpy as np\n    >>> np_arr = np.array(list(my_map))");
         
         std::string doc_get_elem = std::string("Retrieve the ith element of this list.n\nArgs:\n    i (int): Index of element.\n\nReturns:\n    ") + e_type + std::string(": ith element.");
         std::string doc_set_elem = std::string("Set the ith element of this list to be newval. Note that the type of newval needs to be ")+e_type+std::string(" or a type that can be implicitly converted to ")+e_type + std::string(". ")+hint_set_elem+std::string("\n\nArgs:\n    i (int): Index of List\n    j (int): Index of element.\n    newval (") + e_type + std::string("): The new element.\n\n") + ex_set_elem;

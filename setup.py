@@ -5,14 +5,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="nctx", # Replace with your own username
+    name="nctx", 
     version="0.1",
     author="Mirco Schoenfeld",
-    author_email="twlyy29@gmail.com",
+    author_email="mirco.schoenfeld@uni-bayreuth.de",
     description="The 'nctx' package provides functionality to obtain shortest paths and infer shortest-path-based centrality metrics in attributed networks.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://nctx.mircoschoenfeld.de",
+    url="https://github.com/nctx/py3nctx",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
