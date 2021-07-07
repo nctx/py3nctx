@@ -3,6 +3,40 @@ nctx - Networks in ConTeXt
 
 The package `nctx` provides functionality to analyze attributed networks. Unique feature of this package is the ability to enforce contextual constraints via user-defined functions during shortest path discovery and centrality calculation. More info and full documentation can be found [here](https://nctx.mircoschoenfeld.de/python3/)
 
+The source code is accessible [on github](https://github.com/nctx/py3nctx).
+
+Installation
+============
+
+Usually, Python packages can be installed using the `pip` package manager downloading a package from a repository as part of the installation process. Since `nctx` is a C++ library wrapped for Python, the package can't be distributed via a repository as it needs to be compiled on your computer. The `pip` package manager does not provide this functionality. Therefore, you first need to compile the package and install it using `pip` afterwards.
+
+Compiling the `nctx` package for Python3 requires an installation of:
+
+* a C++17 compiler ([GCC](https://gcc.gnu.org/) version 7 and above)
+* [Boost](https://www.boost.org/) (min. v. 1.65.0)
+* [CMake](https://cmake.org/)
+* [scikit-build](https://github.com/scikit-build/scikit-build)
+
+Under Ubuntu, these requirements can be installed using
+
+```bash
+sudo apt install libboost1.71-dev cmake build-essential
+pip3 install scikit-build
+```
+Note that this simply installs all available Boost libraries. Strictly required are `libboost-graph-dev` and `libboost-python-dev`.
+
+Then, in the root of the source directory, call
+
+```bash
+python3 setup.py bdist_wheel
+```
+
+to produce a `whl`-file (a Python-wheel). This `whl`-file is found under the `dist/`-subfolder and can then be installed with
+
+```bash
+pip3 install dist/nctx-*.whl
+```
+
 Basic Example
 =============
 
