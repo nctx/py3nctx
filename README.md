@@ -162,22 +162,25 @@ More examples can be found in the documentation of the functions - see [https://
 Citation
 ========
 
-If you use the `nctx` package, please cite [the corresponding tech report](https://epub.uni-bayreuth.de/5677/):
+If you use the `nctx` package, please cite [this paper](https://doi.org/10.1016/j.socnet.2021.10.004):
 
 ```
-Mirco Schoenfeld. nctx - Networks in ConTeXt. University of Bayreuth, 2021.
+Schönfeld, Mirco ; Pfeffer, Jürgen:
+Shortest path-based centrality metrics in attributed graphs with node-individual context constraints.
+In: Social Networks. (2 November 2021) . 
 ```
 
 ```
-@techreport{2021-schoenfeld-nctx,
-           month = {June},
-     institution = {University of Bayreuth},
-         address = {Bayreuth, Germany},
-          author = {Mirco Schoenfeld},
-           title = {nctx - Networks in ConTeXt},
-            year = {2021},
-        keywords = {network analysis, attributed networks, context-awareness, library, python, R, C++},
-             url = {https://epub.uni-bayreuth.de/5677/}
+@article{SCHOENFELD2021,
+    title = {Shortest path-based centrality metrics in attributed graphs with node-individual context constraints},
+  journal = {Social Networks},
+     year = {2021},
+     issn = {0378-8733},
+      doi = {https://doi.org/10.1016/j.socnet.2021.10.004},
+      url = {https://www.sciencedirect.com/science/article/pii/S037887332100085X},
+   author = {Mirco Schoenfeld and Jürgen Pfeffer},
+ keywords = {Attributed network, Betweenness centrality, Closeness centrality, Contextual embeddedness},
+ abstract = {Centrality measurements are a well-known method to assess the importance of actors in networks. They are easy to obtain and provide a versatile interpretability adaptable to the meaning of nodes and edges. The current centrality measurements use structural information alone. In real-world situations, however, actors and the connections between them are subject to contextual settings and can be significantly influenced by these settings. In fact, such real-world observations are often modeled using attributed networks in which contextual information can be associated as attributes to nodes and edges. However, this information is disregarded when evaluating the importance of actors in terms of network centrality measurements. Hence, this paper proposes a method for obtaining shortest path-based centrality measurements for attributed networks that exploit attribute information on nodes for shortest path calculations. We add abstracts of scientific publications to a co-publishing network and use topic models to create node-individual context constraints for shortest path calculations. This creates additional analytic opportunities and can aid in gaining a detailed understanding of complex social networks.}
 }
 ```
 
